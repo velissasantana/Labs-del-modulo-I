@@ -1,0 +1,64 @@
+PRACTICA 1: INSTALACION DEL SISTEMA OPERATIVO
+
+Sistema operativo: Rocky Linux
+
+1. CREACION DE LA MAQUINA VIRTUAL
+
+Para realizar la instalación de Rocky Linux se creó una máquina virtual utilizando VirtualBox. Se asignaron recursos suficientes para que el sistema operativo pudiera ejecutarse correctamente.
+
+Configuración utilizada:
+- Sistema operativo: Rocky Linux
+- Tipo: Linux
+- RAM: 4 GB
+- Procesadores: 2 CPU
+- Disco duro virtual: 30 GB
+- Tipo de almacenamiento: Dinámico
+
+2. CONFIGURACION DE LA TARJETA DE RED
+
+Se configuró la tarjeta de red de la máquina virtual en modo Adaptador puente (Bridge).
+
+Para realizar esta configuración se ingresó a:
+Configuración > Red > Adaptador 1.
+
+Se habilitó el adaptador de red y en la opción "Conectado a" se seleccionó "Adaptador puente". Luego se seleccionó la tarjeta de red utilizada por el equipo físico.
+
+Esta configuración permite que la máquina virtual se conecte a la misma red que el equipo principal y pueda obtener una dirección IP dentro de esa red.
+
+3. INSTALACION DE ROCKY LINUX
+
+Se inició la máquina virtual y se utilizó la imagen ISO de Rocky Linux para comenzar el proceso de instalación.
+
+Durante la instalación se realizaron los siguientes pasos:
+
+1. Iniciar la máquina virtual desde la imagen ISO.
+2. Seleccionar la opción de instalación de Rocky Linux.
+3. Seleccionar el idioma del sistema.
+4. Configurar el teclado.
+5. Configurar la fecha y hora.
+6. Seleccionar el disco donde se instalará el sistema operativo.
+7. Configurar la conexión de red.
+8. Crear el usuario del sistema.
+9. Establecer la contraseña correspondiente.
+10. Comenzar la instalación.
+11. Esperar a que finalice el proceso.
+12. Reiniciar la máquina virtual.
+13. Iniciar sesión en Rocky Linux.
+
+4. VERIFICACION DEL SISTEMA
+
+Después de completar la instalación, se verificó que Rocky Linux iniciara correctamente.
+
+También se puede comprobar la información del sistema utilizando el siguiente comando:
+
+hostnamectl
+
+Para comprobar la configuración de red se puede utilizar:
+
+ip addr
+
+Estos comandos permiten verificar que el sistema operativo está instalado y que la interfaz de red está funcionando correctamente.
+
+5. CONCLUSION
+
+En esta práctica se realizó la creación y configuración de una máquina virtual para instalar Rocky Linux. Se asignaron los recursos necesarios para su funcionamiento y se configuró la tarjeta de red en modo Adaptador puente (Bridge). Finalmente, se realizó la instalación del sistema operativo y se verificó su funcionamiento básico.
