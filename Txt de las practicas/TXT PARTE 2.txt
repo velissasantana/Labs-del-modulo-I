@@ -1,0 +1,163 @@
+========================================ip
+PRACTICA 2 - PARAMETROS DE RED
+ROCKY LINUX
+========================================
+Hola, mi nombre es Velissa Santana. En esta práctica realizaré la configuración de los parámetros de red en Rocky Linux utilizando DHCP e IP estática mediante la terminal. También configuraré los servidores DNS de Google, 8.8.8.8 y 8.8.4.4.
+
+1. IDENTIFICAR LA INTERFAZ DE RED
+========================================
+
+ip a
+
+nmcli device status
+
+nmcli connection show
+
+“Con el comando ip a puedo identificar las interfaces de red disponibles. Luego utilizo nmcli device status para conocer el estado de cada dispositivo y la conexión asociada.”
+
+
+2. VER LA CONFIGURACION ACTUAL
+========================================
+
+nmcli connection show enp0s3
+
+ip addr show enp0s3
+
+ip route
+
+
+3. CONFIGURAR DHCP
+========================================
+Ahora vamos a configurar la interfaz para obtener automáticamente la dirección IP mediante DHCP.
+
+sudo nmcli connection modify enp0s3 ipv4.method auto
+
+sudo nmcli connection down enp0s3
+
+sudo nmcli connection up enp0s3
+
+ip a
+
+ip route
+
+ping -c 4 8.8.8.8
+
+“En esta parte configuré la interfaz para utilizar DHCP. Esto permite que el sistema obtenga automáticamente una dirección IP, máscara, puerta de enlace y otros parámetros de red desde un servidor DHCP.
+
+4. CONFIGURAR IP ESTATICA
+========================================
+Ahora vamos a cambiar de DHCP a una dirección IP fija.
+
+IMPORTANTE:
+Primero ejecuta:
+
+ip route
+
+Usa los valores correspondientes a TU red.
+
+sudo nmcli connection modify ens160 ipv4.method manual ipv4.addresses 192.168.17.150/24 ipv4.gateway 192.168.17.2
+
+sudo nmcli connection down ens160
+
+sudo nmcli connection up ens160
+
+ip a
+
+ip route
+
+“Ahora cambié el método de configuración de automático a manual. De esta manera establezco una dirección IP fija, junto con su prefijo y puerta de enlace.”
+
+5. CONFIGURAR DNS DE GOOGLE
+========================================
+
+sudo nmcli connection modify ens160 ipv4.dns "8.8.8.8 8.8.4.4"
+
+sudo nmcli connection down ens160
+
+sudo nmcli connection up ens160
+
+nmcli connection show ens160 | grep ipv4.dns
+
+
+6. COMPROBAR LA CONEXION
+========================================
+
+ping -c 4 8.8.8.8
+
+ping -c 4 google.com
+
+getent hosts google.com
+
+
+7. MOSTRAR NMCLI
+========================================
+
+nmcli device status
+
+nmcli connection show
+
+nmcli connection show ens160
+
+nmcli connection show ens160 | grep ipv4
+
+nmcli connection show ens160 | grep ipv4.dns
+
+
+8. MOSTRAR NMTUI
+========================================
+
+sudo nmtui
+
+Dentro de NMTUI:
+
+Edit a connection
+
+Seleccionar enp0s3
+
+Mostrar IPv4
+
+Mostrar DHCP
+
+Mostrar IP manual
+
+Mostrar Gateway
+
+Mostrar DNS
+
+Salir
+
+9. MOSTRAR LOS ARCHIVOS DE NETWORKMANAGER
+========================================
+
+ls /etc/NetworkManager/system-connections/
+
+Luego, para mostrar el archivo:
+
+sudo cat /etc/NetworkManager/system-connections/NOMBRE_DEL_ARCHIVO.nmconnection
+
+10. COMPROBAR LOS DNS
+========================================
+
+nmcli connection show enp0s3 | grep dns
+
+cat /etc/resolv.conf
+
+
+11. COMPROBACION FINAL
+========================================
+
+ip a
+
+ip route
+
+nmcli device status
+
+nmcli connection show enp0s3 | grep ipv4
+
+nmcli connection show enp0s3 | grep ipv4.dns
+
+ping -c 4 8.8.8.8
+
+ping -c 4 google.com
+
+getent hosts google.com

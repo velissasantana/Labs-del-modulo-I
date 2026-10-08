@@ -1,0 +1,62 @@
+PRÁCTICA 3: GESTIÓN DE USUARIOS Y GRUPOS
+
+Todos los comandos se ejecutan como usuario root.
+
+1. Crear un usuario con mi nombre y agregarlo al grupo sudoers
+
+Crear el usuario:
+
+useradd Velissa
+
+Asignarle una contraseña:
+
+passwd Velissa
+
+Agregarlo al grupo sudoers:
+
+usermod -aG wheel Velissa
+
+Nota: En Rocky Linux el grupo administrativo normalmente es "wheel". Este grupo permite utilizar sudo.
+
+Verificar:
+
+groups Velissa
+
+2. Crear el grupo guest y agregar un usuario
+
+Crear el grupo:
+
+groupadd guest
+
+Crear el usuario:
+
+useradd invitado
+
+Asignar contraseña:
+
+passwd invitado
+
+Agregar el usuario al grupo guest:
+
+usermod -aG guest invitado
+
+Verificar:
+
+groups invitado
+
+3. Eliminar el usuario y el grupo
+
+Eliminar el usuario:
+
+userdel -r invitado
+
+Eliminar el grupo:
+
+groupdel guest
+
+Verificar que fueron eliminados:
+
+getent passwd invitado
+getent group guest
+
+Si no aparece ningún resultado, fueron eliminados correctamente.

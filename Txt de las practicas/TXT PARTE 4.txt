@@ -1,0 +1,53 @@
+PRÁCTICA 4: GESTIÓN DE PERMISOS DE ARCHIVOS
+
+Todos los comandos se ejecutan como root.
+
+1. Crear la carpeta, archivo y editarlo con vi
+
+mkdir materia
+touch materia/estudiante.txt
+vi materia/estudiante.txt
+
+Dentro de vi, presionar:
+
+i
+
+Escribir:
+
+Nombre: Velissa Santana
+Matrícula: 2025-1408
+
+Para guardar y salir:
+
+Presionar ESC
+Escribir :wq
+Presionar ENTER
+
+2. Dar control total solamente al usuario propietario
+
+chmod 700 materia/estudiante.txt
+
+Verificar:
+
+ls -l materia/estudiante.txt
+
+3. Dar control total solamente al grupo propietario
+
+chmod 070 materia/estudiante.txt
+
+Verificar:
+
+ls -l materia/estudiante.txt
+
+4. Crear materia2 y copiar el archivo
+
+mkdir materia2
+cp materia/estudiante.txt materia2/
+
+5. Eliminar la carpeta materia con el archivo
+
+rm -rf materia
+
+Verificar:
+
+ls
